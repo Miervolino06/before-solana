@@ -1,0 +1,10 @@
+import './polyfills';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/archivo';
+import '@solana/wallet-adapter-react-ui/styles.css';
+import { Wallets } from './wallet';
+import App from './App';
+import './styles.css';
+createRoot(document.getElementById('root')!).render(<StrictMode><Wallets><App /></Wallets></StrictMode>);
