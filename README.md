@@ -1,5 +1,7 @@
 # BEFORE
 
+[Open the app](https://before-solana.vercel.app) · [Source](https://github.com/Miervolino06/before-solana) · [Verification and remaining demo steps](docs/VERIFICATION.md)
+
 BEFORE turns a short prediction or commitment into a public Devnet receipt: one zero-decimal SPL token is minted to the connected wallet, its mint authority is revoked, and the signed statement is recorded by the Memo Program in the same transaction. The app shows the transaction only after it confirms on chain. The statement is limited to 180 UTF-8 bytes.
 
 ## Run locally

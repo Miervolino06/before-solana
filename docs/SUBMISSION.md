@@ -2,8 +2,9 @@
 
 **Project:** BEFORE  
 **Network:** Solana Devnet  
+**Submission deadline:** 23/09/2026 at 21:28 America/Sao_Paulo (24/09/2026 00:28 UTC), verified on the [official event page](https://www.hackalaunch.com/h/proof-of-taste).  
 **Public repository:** https://github.com/Miervolino06/before-solana  
-**Live browser app:** NOT YET DEPLOYED — add and open-test the URL before submitting.  
+**Live browser app:** https://before-solana.vercel.app — opened in Chrome; wallet selector detects installed wallets.  
 **Demo video (3 minutes maximum):** NOT YET RECORDED — follow [DEMO.md](DEMO.md) and link the uploaded video before submitting.
 
 ## Short description
@@ -29,7 +30,7 @@ The signing review treats the statement and its on-chain cost as the main event,
 ## Submission checklist
 
 - [x] Publish the repository and add its URL above.
-- [ ] Deploy the app and confirm it loads in a browser with a standard Devnet wallet; add its live URL above.
+- [x] Deploy the app and confirm browser loading and standard wallet selection. Full wallet signing remains below.
 - [ ] Complete a fresh, real Devnet transaction from the app, verify its signature and all instructions on Devnet Explorer, and save the evidence.
 - [ ] Record and link a video of no more than three minutes. It must show the review/signing screen, wallet approval, chain confirmation, and the resulting receipt.
 - [ ] Keep `.env.example` in the repository and ensure it contains only the public Devnet RPC setting.
@@ -39,4 +40,5 @@ The signing review treats the statement and its on-chain cost as the main event,
 ## Limits to state honestly
 
 This is a Devnet proof of publication, not proof that a prediction came true. The statement is public and durable. A token can be transferred or burned after minting, so the receipt proves creation and the recipient at that time, not permanent ownership. The app does not attach token metadata or artwork, and does not claim a wallet-rendered NFT. Devnet assets have no economic value and Devnet may reset. Do not describe the app as deployed, live, or demoed until those steps are complete.
+
 

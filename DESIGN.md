@@ -12,7 +12,7 @@ The central brand color is cobalt `#2457e7`. The page background is `#e9eeff`; p
 
 Manrope Variable is the interface face. Archivo Variable carries the wordmark, headline, card statement, and display headings. The wide layout is a two-column editorial/composer and record-preview composition, capped at 1540px, with a fine divider before the preview. The preview card is capped at 570px, has a paper-like shadow, and turns by 2 degrees at rest.
 
-Responsive rules in `src/styles.css` switch the main grid to a vertical flow at 820px and tighten the card and controls again at 520px. The 520px layout replaces desktop navigation links with a slim sub-navigation row. Statement display size responds to text length, and the input limit is 180 UTF-8 bytes.
+Responsive rules in `src/styles.css` switch the main grid to a vertical flow at 820px and tighten the card and controls again at 520px. Between 521px and 820px the primary navigation links return at a smaller size; at 520px and below, a slim sub-navigation row replaces them. Statement display size responds to text length, and the input limit is 180 UTF-8 bytes.
 
 ## Motion and interaction
 
