@@ -68,6 +68,10 @@ const MAX_PREPARED_AGE_MS = 60_000;
 const encoder = new TextEncoder();
 const decoder = new TextDecoder('utf-8', { fatal: true });
 const BASE58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+// Node and browser polyfills may supply different Buffer constructors.
+function bytesEqual(left: Uint8Array, right: Uint8Array): boolean {
+  return left.length === right.length && left.every((byte, index) => byte === right[index]);
+}
 const preparedGuards = new WeakMap<PreparedRecord, {
   message: Buffer;
   mint: string;
@@ -197,7 +201,7 @@ export async function submitRecord(
 ): Promise<RecordReceipt> {
   await assertDevnet();
   const guard = preparedGuards.get(prepared);
-  if (!guard || !guard.message.equals(prepared.transaction.serializeMessage()) ||
+  if (!guard || !bytesEqual(guard.message, prepared.transaction.serializeMessage()) ||
       guard.mint !== prepared.mint || guard.owner !== prepared.owner ||
       guard.draft.statement !== prepared.draft.statement || guard.draft.kind !== prepared.draft.kind || guard.draft.theme !== prepared.draft.theme ||
       guard.rentLamports !== prepared.rentLamports || guard.feeLamports !== prepared.feeLamports || guard.totalLamports !== prepared.totalLamports ||
@@ -224,7 +228,7 @@ export async function submitRecord(
   if (original.instructions.length !== expectedInstructions.length ||
       !original.instructions.every((instruction, index) =>
         instruction.programId.equals(expectedInstructions[index].programId) &&
-        instruction.data.equals(expectedInstructions[index].data) &&
+        bytesEqual(instruction.data, expectedInstructions[index].data) &&
         instruction.keys.length === expectedInstructions[index].keys.length &&
         instruction.keys.every((key, keyIndex) =>
           key.pubkey.equals(expectedInstructions[index].keys[keyIndex].pubkey) &&
@@ -237,9 +241,9 @@ export async function submitRecord(
   if (!originalMintSignature) throw new Error('Temporary mint signature is missing. Prepare again.');
   if (!original.verifySignatures(false)) throw new Error('Temporary mint signature is invalid. Prepare again.');
   const signed = await signTransaction(original);
-  if (!signed.serializeMessage().equals(expectedMessage)) throw new Error('Wallet changed the transaction. Request canceled.');
+  if (!bytesEqual(signed.serializeMessage(), expectedMessage)) throw new Error('Wallet changed the transaction. Request canceled.');
   const signedMintSignature = signed.signatures.find(item => item.publicKey.equals(mint))?.signature;
-  if (!signedMintSignature?.equals(originalMintSignature) || !signed.verifySignatures()) throw new Error('Wallet did not preserve the required signatures. Request canceled.');
+  if (!signedMintSignature || !bytesEqual(signedMintSignature, originalMintSignature) || !signed.verifySignatures()) throw new Error('Wallet did not preserve the required signatures. Request canceled.');
   const raw = signed.serialize();
   const ownerSignature = signed.signatures.find(item => item.publicKey.equals(owner))?.signature;
   if (!ownerSignature) throw new Error('Wallet signature is missing.');
@@ -322,7 +326,7 @@ export function verifyRecordTransaction(signature: string, response: VersionedTr
   if (response.meta.preBalances[first.accounts[1]] !== 0 || response.meta.postBalances[first.accounts[1]] !== rent) throw new Error('Mint was not created with the declared rent.');
   const expectedMessage = new Transaction({ feePayer: owner, recentBlockhash: message.recentBlockhash })
     .add(...recordInstructions(owner, mint, parsed.draft, rent)).compileMessage();
-  if (!Buffer.from(message.serialize()).equals(expectedMessage.serialize())) throw new Error('Instructions do not match the BEFORE protocol.');
+  if (!bytesEqual(message.serialize(), expectedMessage.serialize())) throw new Error('Instructions do not match the BEFORE protocol.');
   const signatures = response.transaction.signatures;
   if (signatures.length !== 2 || signatures[0] !== signature) throw new Error('Invalid record signatures.');
   const legacy = Transaction.populate(message, signatures);

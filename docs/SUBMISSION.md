@@ -2,7 +2,7 @@
 
 **Project:** BEFORE  
 **Network:** Solana Devnet  
-**Public repository:** NOT YET PUBLISHED — add the verified public GitHub URL before submitting.  
+**Public repository:** https://github.com/Miervolino06/before-solana  
 **Live browser app:** NOT YET DEPLOYED — add and open-test the URL before submitting.  
 **Demo video (3 minutes maximum):** NOT YET RECORDED — follow [DEMO.md](DEMO.md) and link the uploaded video before submitting.
 
@@ -28,7 +28,7 @@ The signing review treats the statement and its on-chain cost as the main event,
 
 ## Submission checklist
 
-- [ ] Publish the repository and add its URL above.
+- [x] Publish the repository and add its URL above.
 - [ ] Deploy the app and confirm it loads in a browser with a standard Devnet wallet; add its live URL above.
 - [ ] Complete a fresh, real Devnet transaction from the app, verify its signature and all instructions on Devnet Explorer, and save the evidence.
 - [ ] Record and link a video of no more than three minutes. It must show the review/signing screen, wallet approval, chain confirmation, and the resulting receipt.
@@ -39,3 +39,4 @@ The signing review treats the statement and its on-chain cost as the main event,
 ## Limits to state honestly
 
 This is a Devnet proof of publication, not proof that a prediction came true. The statement is public and durable. A token can be transferred or burned after minting, so the receipt proves creation and the recipient at that time, not permanent ownership. The app does not attach token metadata or artwork, and does not claim a wallet-rendered NFT. Devnet assets have no economic value and Devnet may reset. Do not describe the app as deployed, live, or demoed until those steps are complete.
+

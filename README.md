@@ -7,7 +7,7 @@ BEFORE turns a short prediction or commitment into a public Devnet receipt: one 
 Requirements: Node.js 20 or newer and npm. Copy `.env.example` to `.env.local` if you want to override the public RPC endpoint, then run:
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
@@ -32,7 +32,7 @@ The token has zero decimals and a supply of one. The app revokes its mint author
 
 ## What a signature does
 
-Before asking the wallet to sign, the review screen should show the statement that will be public, the token and account creation, the one token the wallet receives, the rent-exempt SOL needed for new accounts, the network fee estimate, and the permanent-publication risk. Rent and fees are paid by the wallet to the network; the app charges no fee and receives no SOL. Verify the final transaction and its costs in the wallet before approving. A transaction fee may still be charged if a submitted transaction fails.
+Before asking the wallet to sign, the review screen shows the statement that will be public, the token and account creation, the one token the wallet receives, the rent-exempt SOL needed for new accounts, the network fee estimate, and the permanent-publication risk. Rent and fees are paid by the wallet to the network; the app charges no fee and receives no SOL. Verify the final transaction and its costs in the wallet before approving. A transaction fee may still be charged if a submitted transaction fails.
 
 The statement is public and cannot be retracted from the ledger. A timestamp proves that the statement was published; it does not prove that a prediction is correct or establish the truth of an identity or claim. The token may later be transferred or burned; the receipt proves its creation and recipient at that time, not permanent ownership. Devnet tokens have no economic value and Devnet state can be reset.
 
@@ -41,4 +41,5 @@ The statement is public and cannot be retracted from the ledger. A timestamp pro
 Product scope, network, constraints, and known evidence gaps are recorded in [PRODUCT.md](PRODUCT.md). The transaction flow and signing disclosure are described in [docs/CHAIN.md](docs/CHAIN.md). Submission status and the short description/design statement are in [docs/SUBMISSION.md](docs/SUBMISSION.md); the <=3 minute real-transaction recording guide is in [docs/DEMO.md](docs/DEMO.md).
 
 The interface uses Manrope and Archivo variable fonts, distributed under SIL Open Font License 1.1, and Lucide icons from `lucide-react` under ISC. React and React DOM are MIT-licensed. The project license is MIT; see [LICENSE](LICENSE). No third-party wallet branding or artwork is presented as BEFORE's identity.
+
 
